@@ -66,6 +66,9 @@ public class MovieServiceImpl implements MovieService {
                 movie.setPoster(file);
             }
             movieRepository.save(movie);
+            /**
+             * Iterates over the list of all actors
+             */
             if (!NullEmptyUtils.isNullorEmpty(movieCreationBean.getActorIdList()))
             {
                 for (Integer actorId : movieCreationBean.getActorIdList())
@@ -74,6 +77,11 @@ public class MovieServiceImpl implements MovieService {
                 }
             }
             return movie.getMovieId();
+        }
+        catch (DataAccessException e)
+        {
+            LOGGER.error(GeneralConstants.ERROR,e);
+            throw new DataException(GeneralConstants.FAULT,GeneralConstants.SQL_EXCEPTIONS,HttpStatus.INTERNAL_SERVER_ERROR,e.getRootCause().getMessage());
         }
         catch (DataException e)
         {
@@ -110,6 +118,11 @@ public class MovieServiceImpl implements MovieService {
             }
             return true;
         }
+        catch (DataAccessException e)
+        {
+            LOGGER.error(GeneralConstants.ERROR,e);
+            throw new DataException(GeneralConstants.FAULT,GeneralConstants.SQL_EXCEPTIONS,HttpStatus.INTERNAL_SERVER_ERROR,e.getRootCause().getMessage());
+        }
         catch (DataException e)
         {
             LOGGER.error(GeneralConstants.ERROR,e);
@@ -138,6 +151,11 @@ public class MovieServiceImpl implements MovieService {
             List<ActorResponse> actorResponseList = actorToMovieService.fetchActorByMovie(movieId);
             aggregateMovieResponse.setActorResponseList(actorResponseList);
             return aggregateMovieResponse;
+        }
+        catch (DataAccessException e)
+        {
+            LOGGER.error(GeneralConstants.ERROR,e);
+            throw new DataException(GeneralConstants.FAULT,GeneralConstants.SQL_EXCEPTIONS,HttpStatus.INTERNAL_SERVER_ERROR,e.getRootCause().getMessage());
         }
         catch (DataException e)
         {
@@ -175,6 +193,11 @@ public class MovieServiceImpl implements MovieService {
                 throw new DataException(GeneralConstants.OK,"No data found",HttpStatus.OK,"Empty data");
             }
             return movieResponseBeanList;
+        }
+        catch (DataAccessException e)
+        {
+            LOGGER.error(GeneralConstants.ERROR,e);
+            throw new DataException(GeneralConstants.FAULT,GeneralConstants.SQL_EXCEPTIONS,HttpStatus.INTERNAL_SERVER_ERROR,e.getRootCause().getMessage());
         }
         catch (DataException e)
         {
