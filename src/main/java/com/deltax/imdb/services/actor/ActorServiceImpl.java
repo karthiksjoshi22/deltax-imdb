@@ -32,7 +32,7 @@ public class ActorServiceImpl implements ActorService {
     /**
      * Service to add actors
      * @param actorCreationBean
-     * @return
+     * @return created actor id
      * @throws DataException
      */
     @Override
@@ -78,6 +78,13 @@ public class ActorServiceImpl implements ActorService {
         }
     }
 
+    /**
+     * Service to fetch list of all active actors
+     * @param page starts with 0
+     * @param size starts with 1
+     * @return list of actor data
+     * @throws DataException
+     */
     @Override
     public Page<ActorResponseBean> fetchAllActors(int page, int size) throws DataException
     {
@@ -108,6 +115,13 @@ public class ActorServiceImpl implements ActorService {
         }
     }
 
+    /**
+     * Updates actor meta-data.
+     * @param actorId on which update should happen
+     * @param actorCreationBean
+     * @return
+     * @throws DataException
+     */
     @Transactional(rollbackOn = DataException.class)
     @Override
     public boolean updateActor(int actorId,ActorCreationBean actorCreationBean) throws DataException
@@ -121,7 +135,7 @@ public class ActorServiceImpl implements ActorService {
             {
                 throw new DataException(GeneralConstants.FAIL,"Updation failed",HttpStatus.BAD_REQUEST,"Invalid actor id");
             }
-            return result>1;
+            return true;
         }
         catch (DataAccessException e)
         {
@@ -140,6 +154,12 @@ public class ActorServiceImpl implements ActorService {
         }
     }
 
+    /**
+     * Soft deletes a particular actor
+     * @param actorId
+     * @return
+     * @throws DataException
+     */
     @Transactional(rollbackOn = DataException.class)
     @Override
     public boolean deleteActor(int actorId) throws DataException
@@ -152,7 +172,7 @@ public class ActorServiceImpl implements ActorService {
             {
                 throw new DataException(GeneralConstants.FAIL,"Deletion failed",HttpStatus.BAD_REQUEST,"Invalid actor id");
             }
-            return result>1;
+            return true;
         }
         catch (DataAccessException e)
         {
@@ -171,6 +191,11 @@ public class ActorServiceImpl implements ActorService {
         }
     }
 
+    /**
+     * Service for drop-down data
+     * @return
+     * @throws DataException
+     */
     @Override
     public List<ActorResponse> fetchAllActorDropDown() throws DataException
     {
@@ -201,6 +226,12 @@ public class ActorServiceImpl implements ActorService {
         }
     }
 
+    /**
+     * Service to fetch actor data by id
+     * @param actorId
+     * @return
+     * @throws DataException
+     */
     @Override
     public ActorResponse fetchById(int actorId) throws DataException
     {
