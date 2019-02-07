@@ -8,6 +8,7 @@ CREATE TABLE `imdb_actor` (
   `is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`actor_id`))engine=InnoDB;
 
+
 CREATE TABLE `imdb_file` (
   `file_id` INT(11) NOT NULL AUTO_INCREMENT,
   `file_name` VARCHAR(255) NULL,
