@@ -29,6 +29,12 @@ public class ActorServiceImpl implements ActorService {
     @Autowired
     private ActorRepository actorRepository;
 
+    /**
+     * Service to add actors
+     * @param actorCreationBean
+     * @return
+     * @throws DataException
+     */
     @Override
     public long addActor(ActorCreationBean actorCreationBean) throws DataException
     {
