@@ -51,3 +51,18 @@ java -jar jar-name
 Once the JAR is started application will be started in port number 5060
 All we need to hit the swagger-ui to start accessing the rest api services
 Swagger link:- http://localhost:5060/swagger-ui.html#/
+
+All the REST API responses will be given in two formats:-
+1)JSON
+2)XML
+Client side can consume the convienent format for ease.
+
+Package hierarchy:-
+1)/src/main/java/com.deltax.imdb
+com.deltax.imdb is the base package where Main application method resides.
+All the sub packages are derived from the base packages.
+All the database related objects are in db.model package.
+All the DTO (i.e.data transfer objects) are in dto package.
+All the business logic resides in services package.
+All the Web services i.e. controllers that are exposed to client side to consume are in ws.producer package.
+All the utils related classes sits in utils package
