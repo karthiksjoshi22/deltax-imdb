@@ -33,3 +33,21 @@ Technology stack used:-
 3)MySQL
 4)Maven
 5)Spring data JPA
+
+Related Data base scripts id in db-scripts directory of the project.
+All the source code is in /src/main/java/com.deltax.imdb package.
+Datasource connection properties is in profiles/local/application.properties file where in we need to have db username and password accordingly and the file.saving.path should be given for uplading movie poster.
+example:- file.saving.path=/home/path/
+
+Commands to start the appliation:-
+This application comes with embedded tomcat server,hence no need to externally map the JAR file to server location.
+Maven related commands to build the JAR are as follows:-
+1)mvn clean
+2)mvn install
+After the above two commands executing successfully navigate to the /target folder inside the project structure.
+There JAR will be built with .jar extension.
+Command to run the jar
+java -jar jar-name
+Once the JAR is started application will be started in port number 5060
+All we need to hit the swagger-ui to start accessing the rest api services
+Swagger link:- http://localhost:5060/swagger-ui.html#/
